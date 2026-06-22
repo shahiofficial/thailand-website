@@ -9,12 +9,12 @@ Static brochure site cloned from the Vietnam build. Same "Island Rush" design sy
 - `vercel.json` — clean URLs
 
 ## Before going live — one find & replace
-Every image URL points at a placeholder Supabase project. Replace `YOURPROJECT` with your
+Every image URL points at a placeholder Supabase project. Replace `btulhnrguotqjkhyeazk` with your
 real Thailand project ref everywhere (it appears in `index.html` and in each package page),
 and create a public Storage bucket named `thailand`.
 
 Base URL pattern:
-`https://<YOURPROJECT>.supabase.co/storage/v1/object/public/thailand/<slug>/<file>`
+`https://<btulhnrguotqjkhyeazk>.supabase.co/storage/v1/object/public/thailand/<slug>/<file>`
 
 ## Deploy
 Download zip → unzip → GitHub "Add file → Upload files" → drag contents in → Commit →
