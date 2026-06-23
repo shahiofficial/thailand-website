@@ -19,3 +19,8 @@ Base URL pattern:
 ## Deploy
 Download zip → unzip → GitHub "Add file → Upload files" → drag contents in → Commit →
 Vercel rebuilds (~30s) → check in an incognito window.
+
+## Day photos (auto-detect)
+Each day shows however many photos you upload, side by side in a 3-wide grid (3 = one row, 6 = two rows, 9 = three rows). Just name them in sequence and the page shows them all:
+`d1-1.jpg, d1-2.jpg, d1-3.jpg, d1-4.jpg ...` then `d2-1.jpg ...`
+Tap any photo to open it large and swipe/arrow through that day's set. No code changes needed when counts change.
