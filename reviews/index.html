@@ -92,6 +92,7 @@ a{color:inherit}
 
 <div class="modal" id="modal"><button class="x" id="modalX">×</button><div id="modalBody"></div></div>
 
+<script src="../assets/kt-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ============================================================
@@ -99,7 +100,7 @@ a{color:inherit}
    Until then, the page shows the SEED sample data below.
    ============================================================ */
 const SUPABASE_URL = 'https://btulhnrguotqjkhyeazk.supabase.co';
-const SUPABASE_ANON_KEY = ''; // <-- paste anon public key here
+const SUPABASE_ANON_KEY = window.KT_SB_KEY || ''; // <-- paste anon public key here
 
 /* Owner-managed video testimonials.
    type:'mp4'  -> src is a Supabase/public MP4 URL (plays with sound)

@@ -72,6 +72,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--teal)}
   </div>
 </div>
 
+<script src="../assets/kt-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* ============================================================
@@ -79,7 +80,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--teal)}
    Without it, the form runs in DEMO mode (no data is saved).
    ============================================================ */
 const SUPABASE_URL = 'https://btulhnrguotqjkhyeazk.supabase.co';
-const SUPABASE_ANON_KEY = ''; // <-- paste anon public key here
+const SUPABASE_ANON_KEY = window.KT_SB_KEY || ''; // <-- paste anon public key here
 const BUCKET = 'reviews';
 
 let rating = 0, files = [];
