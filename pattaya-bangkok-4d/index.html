@@ -356,7 +356,7 @@ figure.ph{cursor:pointer}
 .kt-modal{position:fixed;inset:0;background:rgba(3,20,24,.92);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
 .kt-modal.on{display:flex}.kt-modal img{max-width:92vw;max-height:88vh;border-radius:12px}
 .kt-modal .x{position:absolute;top:14px;right:16px;color:#fff;font-size:30px;background:none;border:none;cursor:pointer}
-</style><script>function ktImg(el){var ex=['jpg','jpeg','png','JPG','JPEG','PNG','webp','WEBP','jfif'];var i=(el.dataset.i?parseInt(el.dataset.i):0)+1;if(i<ex.length){el.dataset.i=i;el.src=el.dataset.base+'.'+ex[i];}else{el.onerror=null;el.style.display='none';var fb=el.nextElementSibling;if(fb&&(fb.classList.contains('ph-fallback')||fb.classList.contains('card-ph')))fb.style.display='flex';}}</script></head><body>
+.rtilt{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);perspective:1100px;padding:8px 0;cursor:grab}.rtilt.drag{cursor:grabbing}.rtilt-plane{transform:rotateX(13deg);transform-style:preserve-3d}.rtilt-track{display:flex;gap:14px;width:max-content;will-change:transform;user-select:none;padding:6px 4px}.rtilt-track .rev{width:270px;flex:0 0 auto}@media(max-width:600px){.rtilt-plane{transform:rotateX(8deg)}.rtilt-track .rev{width:238px}}.vt-c .snd{left:8px;right:auto;top:8px;bottom:auto}.vt-c .m{right:10px}.vt-c .vview{position:absolute;right:8px;top:8px;z-index:4;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.5);border:none;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}.vt-mqwrap{cursor:grab}.vt-mqwrap.drag{cursor:grabbing}.kt-modal video{max-width:min(94vw,420px);max-height:86vh;width:100%;aspect-ratio:9/16;border-radius:16px;background:#000}.vtest{padding-top:10px}</style><script>function ktImg(el){var ex=['jpg','jpeg','png','JPG','JPEG','PNG','webp','WEBP','jfif'];var i=(el.dataset.i?parseInt(el.dataset.i):0)+1;if(i<ex.length){el.dataset.i=i;el.src=el.dataset.base+'.'+ex[i];}else{el.onerror=null;el.style.display='none';var fb=el.nextElementSibling;if(fb&&(fb.classList.contains('ph-fallback')||fb.classList.contains('card-ph')))fb.style.display='flex';}}</script></head><body>
 <nav class="nav"><a class="brand" href="../index.html"><img src="../assets/kt-dark.png" alt="Kairali Trails"></a>
   <a class="back" href="../index.html">← All Thailand packages</a></nav>
 
@@ -408,12 +408,12 @@ figure.ph{cursor:pointer}
     <div class="hc-meta"><span class="star-badge" id="star-bangkok">★★★</span><span>·</span><span>1 night in Bangkok</span></div>
     <div class="hc-amen" id="amen-bangkok"></div></div>
 </div>
-  <div class="fixed-stays"><h4>Also included</h4><span class="fixed-chip">🚌 Intercity transfers</span><span class="fixed-chip">🚤 Coral Island speedboat</span><span class="fixed-chip">🪪 Thailand Pass</span></div>
+  
 </div></section>
 
 
 
-<section class="vtest"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">Happy travellers</span><h2>Love from our travellers</h2></div><div class="vt-mqwrap"><div class="vt-track" id="vtestTrack"></div></div></div></section><section class="rvw"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">Reviews</span><h2>What travellers say</h2></div><div class="rvw-sum" id="rvwSummary"></div><div class="rvw-box" id="rvwBox"></div><div class="rvw-actions"><a class="rvw-write" href="../review-submit/index.html">✍️ Write a review</a><a class="rvw-all" href="../reviews/index.html">See all reviews →</a></div></div></section>
+<section class="vtest"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">Happy travellers</span><h2>Love from our travellers</h2></div><div class="vt-mqwrap"><div class="vt-track" id="vtestTrack"></div></div></div></section><section class="rvw"><div class="wrap"><div class="sec-head rv"><span class="eyebrow">Reviews</span><h2>What travellers say</h2></div><div class="rvw-sum" id="rvwSummary"></div><div class="rtilt"><div class="rtilt-plane"><div class="rtilt-track" id="rvwTrack"></div></div></div><div class="rvw-actions"><a class="rvw-write" href="../review-submit/index.html">✍️ Write a review</a><a class="rvw-all" href="../reviews/index.html">See all reviews →</a></div></div></section>
 <footer><a class="brand" href="../index.html"><img src="../assets/kt-white.png" alt="Kairali Trails"></a>
   <div class="tag">Thank you for choosing Kairali Trails</div>
   <a class="mail" href="mailto:Contact@kairalitrails.com">Contact@kairalitrails.com</a>
@@ -484,18 +484,19 @@ function _buildDay(box){var day=box.getAttribute('data-day');var urls=[];seq('d'
 <script>(function () {
   var BASE = window.KT_BASE || '';
   var SB_URL = 'https://btulhnrguotqjkhyeazk.supabase.co';
-  var SB_KEY = window.KT_SB_KEY || ''; // <-- paste Supabase anon key to go live (see SUPABASE-SETUP.md)
+  var SB_KEY = window.KT_SB_KEY || '';
 
   var SAMPLE = [BASE + 'assets/sample-1.mp4', BASE + 'assets/sample-2.mp4', BASE + 'assets/sample-3.mp4'];
   var SEED_VIDEOS = [
     { src: SAMPLE[0], name: 'Barath \u2019s Family', place: 'Phuket' },
-    { src: SAMPLE[1], name: 'Prajakta S', place: 'Bangkok' },
+    { src: SAMPLE[1], name: 'Achu & Liya', place: 'Krabi' },
     { src: SAMPLE[2], name: 'Nakul & Subree', place: 'Pattaya' }
   ];
   var SEED_REVIEWS = [
     { name: 'Janani Jaaz', rating: 5, place: 'Phuket', created_at: '2026-07-01', text: 'An unforgettable family vacation \u2014 every transfer on time and the team was amazing throughout!', photos: [] },
     { name: 'Rashmi Rajan', rating: 5, place: 'Bangkok', created_at: '2026-06-29', text: 'Our very first international trip. Kairali made it memorable and completely stress-free.', photos: [] },
-    { name: 'Bharath K', rating: 5, place: 'Phi Phi', created_at: '2026-06-22', text: 'Phuket with kids was seamless. The Phi Phi speedboat day was the highlight of our year.', photos: [] }
+    { name: 'Bharath K', rating: 5, place: 'Phi Phi', created_at: '2026-06-22', text: 'Phuket with kids was seamless. The Phi Phi speedboat day was the highlight of our year.', photos: [] },
+    { name: 'Achu & Liya', rating: 5, place: 'Krabi', created_at: '2026-06-15', text: 'Dreamy honeymoon! The sunset cruise and the little surprises made it perfect.', photos: [] }
   ];
   var AVC = ['#0496a5', '#3aa76d', '#f3792a', '#8a5cf6', '#e0567a'];
 
@@ -503,59 +504,57 @@ function _buildDay(box){var day=box.getAttribute('data-day');var urls=[];seq('d'
   function stars(n) { return '\u2605'.repeat(n) + '<span style="color:#dfe7e9">' + '\u2605'.repeat(5 - n) + '</span>'; }
 
   var modal;
-  function showImg(u) {
-    if (!modal) {
-      modal = document.createElement('div'); modal.className = 'kt-modal';
-      modal.innerHTML = '<button class="x">\u00d7</button><div class="bd"></div>';
-      document.body.appendChild(modal);
-      modal.querySelector('.x').onclick = function () { modal.classList.remove('on'); modal.querySelector('.bd').innerHTML = ''; };
-      modal.onclick = function (e) { if (e.target === modal) modal.querySelector('.x').onclick(); };
-    }
-    modal.querySelector('.bd').innerHTML = '<img src="' + u + '">'; modal.classList.add('on');
+  function ensureModal() {
+    if (modal) return;
+    modal = document.createElement('div'); modal.className = 'kt-modal';
+    modal.innerHTML = '<button class="x">\u00d7</button><div class="bd"></div>';
+    document.body.appendChild(modal);
+    modal.querySelector('.x').onclick = function () { modal.classList.remove('on'); modal.querySelector('.bd').innerHTML = ''; };
+    modal.onclick = function (e) { if (e.target === modal) modal.querySelector('.x').onclick(); };
   }
+  function showImg(u) { ensureModal(); modal.querySelector('.bd').innerHTML = '<img src="' + u + '">'; modal.classList.add('on'); }
+  function showVideo(src) { ensureModal(); modal.querySelector('.bd').innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>'; modal.classList.add('on'); }
 
-  /* ---------------- VIDEO MARQUEE ---------------- */
+  /* ---------------- VIDEO ROW: auto-drift + drag + tap-to-toggle-sound + view ---------------- */
   function renderVideos(vids) {
     var track = document.getElementById('vtestTrack'); if (!track || !vids.length) return;
-    var set = vids.concat(vids); // duplicate for seamless loop
+    var set = vids.concat(vids);
     track.innerHTML = set.map(function (v, i) {
-      return '<div class="vt-c" data-i="' + (i % vids.length) + '"><video src="' + v.src + '" muted loop playsinline preload="metadata"></video>' +
-        '<div class="m"><div class="vn">' + esc(v.name) + '</div><div class="vp">\uD83D\uDCCD ' + esc(v.place) + '</div></div>' +
-        '<button class="snd" aria-label="unmute">\uD83D\uDD07</button></div>';
+      var idx = i % vids.length;
+      return '<div class="vt-c" data-i="' + idx + '"><video src="' + v.src + '" muted loop playsinline preload="metadata"></video>' +
+        '<div class="snd">\uD83D\uDD07</div>' +
+        '<button class="vview" aria-label="view">\u26F6</button>' +
+        '<div class="m"><div class="vn">' + esc(v.name) + '</div><div class="vp">\uD83D\uDCCD ' + esc(v.place) + '</div></div></div>';
     }).join('');
+    var row = track.parentNode;
     var cards = [].slice.call(track.querySelectorAll('.vt-c'));
     var vels = cards.map(function (c) { return c.querySelector('video'); });
-    var onScreen = false, scrollPaused = false, interacting = false, x = 0, half = 0;
-
-    function playVisible() { if (!onScreen) return; vels.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }); }
-    function pauseAll() { vels.forEach(function (v) { v.pause(); }); }
-
-    cards.forEach(function (c, i) {
-      c.querySelector('.snd').onclick = function (e) {
-        e.stopPropagation();
-        var v = vels[i], turnOn = v.muted;
-        cards.forEach(function (cc, j) { vels[j].muted = true; cc.classList.remove('live'); cc.querySelector('.snd').textContent = '\uD83D\uDD07'; });
-        if (turnOn) { v.muted = false; v.play(); c.classList.add('live'); c.querySelector('.snd').textContent = '\uD83D\uDD0A'; scrollPaused = true; }
-        else { scrollPaused = false; }
-      };
-    });
-
-    var wrap = track.parentNode;
-    wrap.addEventListener('pointerdown', function () { interacting = true; });
-    window.addEventListener('pointerup', function () { setTimeout(function () { interacting = false; }, 1200); });
+    var x = 0, half = 0, drag = false, moved = false, sx = 0, soff = 0, soundOn = false, onScreen = false;
     function measure() { half = track.scrollWidth / 2; }
     setTimeout(measure, 400); window.addEventListener('resize', measure);
-    function tick() {
-      if (onScreen && !scrollPaused && !interacting && half) { x -= 0.4; if (-x >= half) x += half; track.style.transform = 'translateX(' + x + 'px)'; }
-      requestAnimationFrame(tick);
+    function playVisible() { if (!onScreen) return; vels.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }); }
+    function pauseAll() { vels.forEach(function (v) { v.pause(); }); }
+    function tap(card) {
+      var v = card.querySelector('video');
+      if (v.muted) {
+        cards.forEach(function (cc) { cc.querySelector('video').muted = true; cc.classList.remove('live'); cc.querySelector('.snd').textContent = '\uD83D\uDD07'; });
+        v.muted = false; v.play(); card.classList.add('live'); card.querySelector('.snd').textContent = '\uD83D\uDD0A'; soundOn = true;
+      } else { v.muted = true; card.classList.remove('live'); card.querySelector('.snd').textContent = '\uD83D\uDD07'; soundOn = false; }
     }
+    cards.forEach(function (card) { card.querySelector('.vview').addEventListener('click', function (e) { e.stopPropagation(); showVideo(card.querySelector('video').src); }); });
+    row.addEventListener('pointerdown', function (e) { drag = true; moved = false; sx = e.clientX; soff = x; row.classList.add('drag'); });
+    window.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - sx; if (Math.abs(dx) > 6) moved = true; x = soff + dx; apply(); });
+    window.addEventListener('pointerup', function (e) {
+      if (!drag) return; drag = false; row.classList.remove('drag');
+      if (!moved) { var c = e.target.closest('.vt-c'); if (c && !e.target.closest('.vview')) tap(c); }
+    });
+    function apply() { if (half) { if (x <= -half) x += half; if (x > 0) x -= half; } track.style.transform = 'translateX(' + x + 'px)'; }
+    function tick() { if (onScreen && !drag && !soundOn && half) { x -= 0.35; apply(); } requestAnimationFrame(tick); }
     requestAnimationFrame(tick);
-    new IntersectionObserver(function (es) {
-      es.forEach(function (e) { onScreen = e.isIntersecting; if (onScreen) playVisible(); else pauseAll(); });
-    }, { threshold: 0.25 }).observe(wrap);
+    new IntersectionObserver(function (es) { es.forEach(function (e) { onScreen = e.isIntersecting; if (onScreen) playVisible(); else pauseAll(); }); }, { threshold: 0.2 }).observe(row);
   }
 
-  /* ---------------- REVIEWS ---------------- */
+  /* ---------------- REVIEWS: tilted marquee plane ---------------- */
   function renderSummary(list) {
     var el = document.getElementById('rvwSummary'); if (!el) return;
     var n = list.length, avg = n ? list.reduce(function (a, r) { return a + r.rating; }, 0) / n : 0;
@@ -563,27 +562,39 @@ function _buildDay(box){var day=box.getAttribute('data-day');var urls=[];seq('d'
     el.innerHTML = '<div class="big"><b>' + avg.toFixed(1) + '</b> <span class="s">\u2605</span><small>' + n + ' review' + (n === 1 ? '' : 's') + '</small></div>' +
       '<div class="rvw-bars">' + [5, 4, 3, 2, 1].map(function (s, k) { return '<div class="rvw-bar"><span>' + s + ' \u2605</span><div class="track"><div class="fill" style="width:' + dist[k] + '%"></div></div></div>'; }).join('') + '</div>';
   }
+  function reviewCard(r, i) {
+    var strip = (r.photos && r.photos.length) ? '<div class="strip">' + r.photos.map(function (u) { return '<img src="' + u + '" data-full="' + u + '" alt="traveller photo">'; }).join('') + '</div>' : '';
+    return '<div class="rev"><div class="who"><div class="av" style="background:' + AVC[i % AVC.length] + '">' + esc((r.name || '?')[0].toUpperCase()) + '</div>' +
+      '<div><div class="nm">' + esc(r.name) + '</div><div class="st">' + stars(r.rating) + '</div>' +
+      '<div class="date">\uD83D\uDCCD ' + esc(r.place || '') + '</div></div></div><p>' + esc(r.text) + '</p>' + strip + '</div>';
+  }
   function renderReviews(list) {
-    var box = document.getElementById('rvwBox'); if (!box) return;
-    if (!list.length) { box.innerHTML = '<div style="text-align:center;color:#5a9aa5;padding:20px">No reviews yet \u2014 be the first to share your trip!</div>'; return; }
-    box.innerHTML = list.slice(0, 6).map(function (r, i) {
-      var strip = (r.photos && r.photos.length) ? '<div class="strip">' + r.photos.map(function (u) { return '<img src="' + u + '" data-full="' + u + '" alt="traveller photo">'; }).join('') + '</div>' : '';
-      return '<div class="rev"><div class="who"><div class="av" style="background:' + AVC[i % AVC.length] + '">' + esc((r.name || '?')[0].toUpperCase()) + '</div>' +
-        '<div><div class="nm">' + esc(r.name) + '</div><div class="st">' + stars(r.rating) + '</div>' +
-        '<div class="date">\uD83D\uDCCD ' + esc(r.place || '') + ' \u00b7 ' + esc((r.created_at || '').slice(0, 10)) + '</div></div></div>' +
-        '<p>' + esc(r.text) + '</p>' + strip + '</div>';
-    }).join('');
-    box.querySelectorAll('.strip img').forEach(function (im) { im.onclick = function () { showImg(im.dataset.full); }; });
+    var track = document.getElementById('rvwTrack'); if (!track) return;
+    var wrap = track.closest('.rtilt');
+    if (!list.length) { if (wrap) wrap.innerHTML = '<div style="text-align:center;color:#5a9aa5;padding:24px">No reviews yet \u2014 be the first to share your trip!</div>'; return; }
+    var cards = list.concat(list); // duplicate for seamless loop
+    track.innerHTML = cards.map(reviewCard).join('');
+    track.querySelectorAll('.strip img').forEach(function (im) { im.onclick = function (e) { e.stopPropagation(); showImg(im.dataset.full); }; });
+    var x = 0, half = 0, drag = false, sx = 0, soff = 0, onScreen = false;
+    function measure() { half = track.scrollWidth / 2; }
+    setTimeout(measure, 400); window.addEventListener('resize', measure);
+    wrap.addEventListener('pointerdown', function (e) { drag = true; sx = e.clientX; soff = x; });
+    window.addEventListener('pointermove', function (e) { if (!drag) return; x = soff + (e.clientX - sx); ap(); });
+    window.addEventListener('pointerup', function () { drag = false; });
+    function ap() { if (half) { if (x <= -half) x += half; if (x > 0) x -= half; } track.style.transform = 'translateX(' + x + 'px)'; }
+    function tick() { if (onScreen && !drag && half) { x -= 0.3; ap(); } requestAnimationFrame(tick); }
+    requestAnimationFrame(tick);
+    new IntersectionObserver(function (es) { es.forEach(function (e) { onScreen = e.isIntersecting; }); }, { threshold: 0.1 }).observe(wrap);
   }
 
-  /* ---------------- LOAD (render once) ---------------- */
+  /* ---------------- LOAD ---------------- */
   function render(videos, reviews) { renderVideos(videos); renderSummary(reviews); renderReviews(reviews); }
   function sbGet(path) { return fetch(SB_URL + '/rest/v1/' + path, { headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY } }).then(function (r) { return r.json(); }); }
 
   if (SB_KEY) {
     Promise.all([
       sbGet('testimonials?select=*&order=created_at.desc').catch(function () { return null; }),
-      sbGet('reviews?approved=eq.true&order=created_at.desc&limit=12').catch(function () { return null; })
+      sbGet('reviews?approved=eq.true&order=created_at.desc&limit=20').catch(function () { return null; })
     ]).then(function (res) {
       var vids = (res[0] && res[0].length) ? res[0].map(function (t) { return { src: t.video_url, name: t.name, place: t.place }; }) : SEED_VIDEOS;
       var revs = (res[1] && res[1].length) ? res[1] : SEED_REVIEWS;
