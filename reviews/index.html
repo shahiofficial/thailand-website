@@ -97,11 +97,11 @@ a{color:inherit}
     modal = document.createElement('div'); modal.className = 'kt-modal';
     modal.innerHTML = '<button class="x">\u00d7</button><div class="bd"></div>';
     document.body.appendChild(modal);
-    modal.querySelector('.x').onclick = function () { modal.classList.remove('on'); modal.querySelector('.bd').innerHTML = ''; };
+    modal.querySelector('.x').onclick = function () { modal.classList.remove('on'); modal.querySelector('.bd').innerHTML = ''; if (window.__ktInlineResume) window.__ktInlineResume(); };
     modal.onclick = function (e) { if (e.target === modal) modal.querySelector('.x').onclick(); };
   }
   function showImg(u) { ensureModal(); modal.querySelector('.bd').innerHTML = '<img src="' + u + '">'; modal.classList.add('on'); }
-  function showVideo(src) { ensureModal(); modal.querySelector('.bd').innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>'; modal.classList.add('on'); }
+  function showVideo(src) { ensureModal(); if (window.__ktInlinePause) window.__ktInlinePause(); modal.querySelector('.bd').innerHTML = '<video src="' + src + '" controls autoplay playsinline></video>'; modal.classList.add('on'); }
 
   /* ---------------- VIDEO ROW: auto-drift + drag + tap-to-toggle-sound + view ---------------- */
   function renderVideos(vids) {
@@ -112,16 +112,29 @@ a{color:inherit}
       return '<div class="vt-c" data-i="' + idx + '"><video src="' + v.src + '" muted loop playsinline preload="metadata"></video>' +
         '<div class="snd">\uD83D\uDD07</div>' +
         '<button class="vview" aria-label="view">\u26F6</button>' +
-        '<div class="m"><div class="vn">' + esc(v.name) + '</div><div class="vp">\uD83D\uDCCD ' + esc(v.place) + '</div></div></div>';
+        '<div class="m"><div class="vn">' + esc(v.name) + '</div></div></div>';
     }).join('');
     var row = track.parentNode;
     var cards = [].slice.call(track.querySelectorAll('.vt-c'));
     var vels = cards.map(function (c) { return c.querySelector('video'); });
-    var x = 0, half = 0, drag = false, moved = false, sx = 0, sy = 0, soff = 0, axis = 0, soundOn = false, onScreen = false;
+    var x = 0, half = 0, drag = false, moved = false, sx = 0, sy = 0, soff = 0, axis = 0, soundOn = false, onScreen = false, bufferUntil = 0;
     function measure() { half = track.scrollWidth / 2; }
     setTimeout(measure, 400); window.addEventListener('resize', measure);
-    function playVisible() { if (!onScreen) return; vels.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }); }
+    function playVisible() { if (!onScreen) return; vels.forEach(function (v) { if (v._vis) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }); }
     function pauseAll() { vels.forEach(function (v) { v.pause(); }); }
+    vels.forEach(function (v) {
+      v._vis = false;
+      v.addEventListener('waiting', function () { bufferUntil = performance.now() + 500; });
+      v.addEventListener('stalled', function () { bufferUntil = performance.now() + 500; });
+    });
+    var vio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target; v._vis = e.isIntersecting;
+        if (e.isIntersecting) { if (onScreen) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } }
+        else if (v.muted) { v.pause(); }
+      });
+    }, { root: row, rootMargin: '0px 150px', threshold: 0 });
+    vels.forEach(function (v) { vio.observe(v); });
     function tap(card) {
       var v = card.querySelector('video');
       if (v.muted) {
@@ -144,9 +157,11 @@ a{color:inherit}
       if (!moved) { var c = e.target.closest('.vt-c'); if (c && !e.target.closest('.vview')) tap(c); }
     });
     function apply() { if (half) { if (x <= -half) x += half; if (x > 0) x -= half; } track.style.transform = 'translateX(' + x + 'px)'; }
-    function tick() { if (onScreen && !drag && !soundOn && half) { x -= 0.35; apply(); } requestAnimationFrame(tick); }
+    function tick() { if (onScreen && !drag && !soundOn && half && performance.now() > bufferUntil) { x -= 0.35; apply(); } requestAnimationFrame(tick); }
     requestAnimationFrame(tick);
     new IntersectionObserver(function (es) { es.forEach(function (e) { onScreen = e.isIntersecting; if (onScreen) playVisible(); else pauseAll(); }); }, { threshold: 0.2 }).observe(row);
+    window.__ktInlinePause = function () { vels.forEach(function (v) { v.pause(); v.muted = true; }); cards.forEach(function (c) { c.classList.remove('live'); var s = c.querySelector('.snd'); if (s) s.textContent = '\uD83D\uDD07'; }); soundOn = false; };
+    window.__ktInlineResume = function () { playVisible(); };
   }
 
   /* ---------------- REVIEWS: tilted marquee plane ---------------- */
